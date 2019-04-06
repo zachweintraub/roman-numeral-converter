@@ -11,8 +11,6 @@ function romanNumeralize(num){
   inputBreakdown.push(parseInt((num%10)/5));
   inputBreakdown.push(parseInt(num%5));
 
-  console.log(inputBreakdown);
-
   for(var i = 0; i<inputBreakdown.length; i++) {
     if(inputBreakdown[i] == 1 & inputBreakdown[i+1] == 4) {
     output = output.concat(romanNumerals[i+1] + romanNumerals[i-1]);
@@ -31,7 +29,7 @@ function deRomanize(str) {
   var controlArr = [1000, 500, 100, 50, 10, 5, 1];
   var romanArr = ['M', 'D', 'C', 'L', 'X', 'V', 'I'];
   var output = 0;
-  var inputArr = str.split('');
+  var inputArr = str.toUpperCase().split('');
   for (var i = 0; i < inputArr.length; i++) {
     if(romanArr.indexOf(inputArr[i]) <= romanArr.indexOf(inputArr[i + 1]) || i === inputArr.length-1) {
       output += controlArr[romanArr.indexOf(inputArr[i])];
@@ -46,5 +44,8 @@ function deRomanize(str) {
 $(function(){
   $('#myInput').keyup(function(){
     $('#myAns p').text(romanNumeralize($('#myInput').val()));
+  });
+  $('#myInput2').keyup(function(){
+    $('#myAns2 p').text(deRomanize($('#myInput2').val()));
   });
 });
